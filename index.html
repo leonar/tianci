@@ -15,7 +15,7 @@
             </h3>
             <form role="form">
                 <div class="form-group">
-                     <label>购买总金额（万）</label><input class="form-control" id="allmoney" />
+                     <label>购买总金额（万）（按每股24块计算）</label><input class="form-control" id="allmoney" disabled />
                 </div>
                 <div class="form-group">
                      <label>购买股数</label><input class="form-control" id="allstock" />
@@ -29,7 +29,7 @@
                 <div class="form-group">
                      <label>税率(%)</label><input class="form-control" id="rax" />
                 </div>
-            </form> <button type="button" class="btn btn-default" id="cal">计算</button>
+            </form> <button type="button" class="btn btn-default" id="cal">计算收益</button>
         </div>
     </div>
 </div>
@@ -38,11 +38,16 @@
 
 <script>
     $( document ).ready(function() {
-        $("#allmoney").val("100");
+        $("#allmoney").val("108");
         $("#allstock").val("45000");
         $("#unlock").val(50);
         $("#price").val(34);
         $("#rax").val("20");
+    });
+
+    $("#allstock").change(function(){
+        var total = Number($(this).val())*24/10000;
+        $('#allmoney').val(total);
     });
 
     $("#cal").click(function (_e) {
@@ -52,7 +57,11 @@
         var price = $("#price").val();
         var rax = $("#rax").val();
         var result = allstock*0.4*unlock/100*(price-24)*(1-rax/100);
-        alert("第一年解锁部分全部抛出，收益:" + result);
+        if (result > 0) {
+            alert("第一年解锁部分全部抛出，收益:" + result);
+        } else {
+            alert("第一年解锁部分全部抛出，收益小于0!");
+        };
     });
 </script>
 
