@@ -2,9 +2,6 @@
 <head>
     <title>图片查看</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -37,22 +34,20 @@
 </html>
 
 <script>
-    $( document ).ready(function() {
-        $("#allmoney").val("100");
-        $("#allstock").val("45000");
-        $("#unlock").val(50);
-        $("#price").val(34);
-        $("#rax").val("20");
-    });
+        document.getElementById("allmoney").value = "100";
+        document.getElementById("allstock").value = "45000";
+        document.getElementById("unlock").value = "50";
+        document.getElementById("price").value = "34";
+        document.getElementById("rax").value = "20";
 
-    $("#cal").click(function (_e) {
-        var allmoney = $("#allmoney").val();
-        var allstock = $("#allstock").val();
-        var unlock = $("#unlock").val();
-        var price = $("#price").val();
-        var rax = $("#rax").val();
+    document.getElementById("cal").onclick=function(){
+        var allmoney = document.getElementById("allmoney").value;
+        var allstock = document.getElementById("allstock").value;
+        var unlock = document.getElementById("unlock").value;
+        var price = document.getElementById("price").value;
+        var rax = document.getElementById("rax").value;
         var result = allstock*0.4*unlock/100*(price-24)*(1-rax/100);
         alert("第一年解锁部分全部抛出，收益:" + result);
-    });
+    };
 </script>
 
